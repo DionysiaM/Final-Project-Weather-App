@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="weather-app-wraper">
+            <div class="weather-app">
+                <form id="search-form" class="mb-4">
+                    <div class="row">
+                        <div class="col-9">
+                            <input type="search" placeholder="Type a city.." class="form-control" id="city-input"
+                                autocomplete="off">
+                        </div>
+                        <div class="col-3">
+                </form>
+                <input type="submit" value="search" class="btn btn-primary w-100">
+            </div>
+        </div>
+        <div class="overview">
+            <h1 id="city"> </h1>
+            <ul>
+                <li>Last updated: <span id="date"></span> </li>
+                <li id="description"> </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="clearfix weather-temperature">
+                    <img src="#" id="icon" />
+                    <strong id="temperature"></strong>
+                    <span class="units">
+                        <a href="#" id="celsius-link" class="active">℃</a> | <a href="#" id="fahrenheit-link"
+                            class="inactive">
+                            ℉</a></span>
+                </div>
+            </div>
+            <div class="col-6">
+                <ul>
+                    <li> Precipitation: 0</li>
+                    <li>
+                        Humidity: <span id="humidity"></span>%
+                    </li>
+                    <li>
+                        wind: <span id="wind"></span> km/h
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <small>
+        <a href="https://github.com/DionysiaM/Vanilla-weather-app" target="blank"> open-source code </a>, by
+        Dionysia Mastoru
+    </small>
+    </div>
+    </div>
+    <script src="src/app.js"></script>
+
+</body>
+
+</html>
