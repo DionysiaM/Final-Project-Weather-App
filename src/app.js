@@ -21,6 +21,32 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElememnt = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2">
+                        <div class="weather-forecast-date">${day}</div>
+                        <img src="http://openweathermap.org/img/wn/04d@2x.png" 
+                        alt="" 
+                        width="46">
+                        <div class="weather-forecast-temperature">
+                            <span class="weather-forecast-temp-max">
+                                 18º </span>
+                            <span class="weather-forecast-temp-min"> 
+                                12º </span>
+                        </div>
+                    </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElememnt.innerHTML = forecastHTML;
+}
+
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
@@ -43,7 +69,10 @@ function displayTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
+
 function search(city) {
   let apiKey = "9256cd5001a62b849b9bf8b3dc519af9";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=
@@ -67,6 +96,14 @@ function displayFahrenheitLinkTemperature(event) {
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "b97fb4fa4f75128fab3b7aecd444244c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}
+  &lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function displayCelsiusLinkTemperature(event) {
   event.preventDefault();
   celsiusLink.classList.add("active");
@@ -87,3 +124,4 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusLinkTemperature);
 
 search("New York");
+displayForecast();
