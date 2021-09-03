@@ -49,15 +49,13 @@ function displayForecast(response) {
        <img src="http://openweathermap.org/img/wn/${
          forecastDay.weather[0].icon
        }@2x.png" 
-                        alt="" 
-                        width="46">
-                        <div class="weather-forecast-temperature">
-                            <span class="weather-forecast-temp-max">
-                                 ${Math.round(forecastDay.temp.max)} º </span>
-                            <span class="weather-forecast-temp-min"> 
-                                ${Math.round(forecastDay.temp.min)} º </span>
-                        </div>
-                    </div>`;
+      alt="" 
+  width="46">
+ <div class="weather-forecast-temperature">
+      <span class="weather-forecast-temp-max">
+         ${Math.round(forecastDay.temp.max)} º </span>
+          <span class="weather-forecast-temp-min"> 
+         ${Math.round(forecastDay.temp.min)} º </span></div></div>`;
     }
   });
 
@@ -66,7 +64,6 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = "b97fb4fa4f75128fab3b7aecd444244c";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
@@ -129,6 +126,26 @@ function displayCelsiusLinkTemperature(event) {
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
+function showPosition(position) {
+  let h1 = document.querySelector("h1");
+  h1.innerHTML = `${position.coords.latitude} ${position.coords.longitude}`;
+}
+
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
+
+function searchLocation(position) {
+  let apiKey = "b97fb4fa4f75128fab3b7aecd444244c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function displayCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchLocation);
+}
+
 let celsiusTemperature = null;
 
 let form = document.querySelector("#search-form");
@@ -140,4 +157,10 @@ fahrenheitLink.addEventListener("click", displayFahrenheitLinkTemperature);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusLinkTemperature);
 
-search("New York");
+let currentLocation = document.querySelector("#city");
+currentLocation.addEventListener("submit", getCurrentPosition);
+
+let currentLocationButton = document.querySelector("#current-location-button");
+currentLocationButton.addEventListener("click", displayCurrentLocation);
+
+search("Aegina");
