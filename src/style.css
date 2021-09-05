@@ -1,19 +1,19 @@
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 .button {
   font-size: 8px;
 }
 
 h1 {
-  color: #878787;
+  color: #e5ecef;
   font-size: 24px;
   font-weight: 100;
   line-height: 28px;
   margin-bottom: 0;
+  font-family: "Dancing Script", cursive;
 }
 
+#temperature {
+  color: #e5ecef;
+}
 ul {
   margin: 0;
   padding: 0;
@@ -22,7 +22,7 @@ li {
   list-style: none;
   margin: 0;
   padding: 0;
-  color: rgb(135, 135, 135);
+  color: #e5ecef;
   font-size: 16px;
   font-weight: 100;
   line-height: 19px;
@@ -35,14 +35,28 @@ li:first-letter {
 .weather-app-wraper {
   max-width: 600px;
   margin: 30px auto;
+  background-color: #680747;
 }
 .weather-app {
   padding: 20px;
   border: 1px solid #dadde1;
-  border-radius: 5px;
+  border-radius: 7px;
 }
 .overview {
-  margin-bottom: 20px;
+  margin-top: 10px;
+  font-size: 10px;
+}
+
+#description {
+  margin-top: 0px;
+  margin-bottom: 16px;
+  font-size: 10px;
+}
+
+.weather-details {
+  margin-left: 70px;
+  margin-top: 3px;
+  margin-bottom: 9px;
 }
 
 .weather-temperature img {
@@ -57,6 +71,7 @@ li:first-letter {
   font-size: 64px;
   line-height: 1;
   font-weight: 400;
+  font-family: "Dancing Script", cursive;
 }
 .weather-temperature .units {
   position: relative;
@@ -65,7 +80,7 @@ li:first-letter {
 }
 
 .weather-temperature .active {
-  color: rgb(33, 33, 33);
+  color: #e5ecef;
   cursor: default;
   text-decoration: none;
 }
@@ -73,13 +88,26 @@ li:first-letter {
 .weather-temperature .inactive {
   cursor: default;
   text-decoration: none;
+  color: #e5ecef;
+  opacity: 0.6;
+}
+
+.btn1 {
+  background-color: white;
+  color: #680747;
+}
+
+.btn2 {
+  background-color: white;
+  color: #680747;
 }
 
 .weather-forecast {
   margin-top: 20px;
   margin-bottom: 20px;
   text-align: center;
-  color: black;
+  color: #e5ecef;
+  font-family: "Dancing Script", cursive;
 }
 
 .weather-forecast-date {
@@ -92,4 +120,9 @@ li:first-letter {
 
 .weather-forecast-temp-min {
   opacity: 0.6;
+}
+
+#signature {
+  color: #e5ecef;
+  font-family: "Dancing Script", cursive;
 }
